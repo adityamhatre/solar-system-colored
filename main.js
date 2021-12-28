@@ -1,5 +1,5 @@
 const mainAxis = 600
-const center = [500, mainAxis]
+const center = [800, mainAxis]
 
 let sunImage
 let sunRotation = 0
@@ -7,7 +7,9 @@ let sunRotation = 0
 const planets = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune']
 const planetImages = []
 const planetYears = [0, 0, 0, 0, 0, 0, 0, 0]
+const planetDays = [0, 0, 0, 0, 0, 0, 0, 0]
 const planetSpeeds = [0.007, 0.005, 0.004, 0.003, 0.002, 0.001, 0.0005, 0.0001]
+const planetDaySpeeds = [0.28, 0.2, 0.16, 0.12, 0.08, 0.04, 0.02, 0.004]
 const basePlanetSpeeds = [0.007, 0.005, 0.004, 0.003, 0.002, 0.001, 0.0005, 0.0001]
 const planetDistances = [0, 75, 150, 235, 370, 525, 650, 740]
 const planetSizes = [25, 40, 40, 50, 110, 140, 40, 40]
@@ -28,7 +30,7 @@ function preload() {
 
 function draw() {
     background('#241f23')
-
+    scale(1)
     for (let i = 0; i < planetSpeeds.length; i++) {
         planetSpeeds[i] = basePlanetSpeeds[i] * s.value()
     }
@@ -75,10 +77,18 @@ function planet(planetIndex) {
     const planetSize = planetSizes[planetIndex]
     push()
     translate(center[0], center[1])
+
+    const r = planetDistance
+    const x = r * cos(planetYears[planetIndex])
+    const y = r * sin(planetYears[planetIndex])
+
+    translate(x, y)
+    rotate(planetDays[planetIndex])
     imageMode(CENTER)
-    rotate(planetYears[planetIndex])
+    image(planetImages[planetIndex], 0, 0, planetSize, planetSize)
+
     planetYears[planetIndex] = (planetYears[planetIndex] + planetSpeeds[planetIndex]) % 360
-    image(planetImages[planetIndex], planetDistance, 0, planetSize, planetSize)
+    planetDays[planetIndex] = (planetDays[planetIndex] + planetDaySpeeds[planetIndex]) % 360
     pop()
 }
 
