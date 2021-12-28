@@ -12,9 +12,10 @@ const planetSpeeds = [0.007, 0.005, 0.004, 0.003, 0.002, 0.001, 0.0005, 0.0001]
 const planetDaySpeeds = [0.28, 0.2, 0.16, 0.12, 0.08, 0.04, 0.02, 0.004]
 const basePlanetSpeeds = [0.007, 0.005, 0.004, 0.003, 0.002, 0.001, 0.0005, 0.0001]
 const planetDistances = [0, 75, 150, 235, 370, 525, 650, 740]
-const planetSizes = [25, 40, 40, 50, 110, 140, 40, 40]
-// saturn size is larger than jupiter because of the ring
 const planetBaseDistance = 490
+
+// saturn size is larger than jupiter because of the ring
+const planetSizes = [25, 40, 40, 50, 110, 140, 40, 40]
 
 function setup() {
     createCanvas(windowWidth, windowHeight)
